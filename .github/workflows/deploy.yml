@@ -21,7 +21,7 @@ jobs:
         key: ${{ secrets.SERVER_SSH_KEY }}
         source: "."
         target: "/path/to/your/server/spalivewire"
-
+#
     - name: Run Artisan commands on server
       uses: appleboy/ssh-action@master
       with:
