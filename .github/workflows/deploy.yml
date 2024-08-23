@@ -1,37 +1,39 @@
-name: Deploy Laravel Application kailash group
+name: Deploy Laravel Application
 
 on:
   push:
     branches:
-      - main  # Trigger deployment on push to the main branch
+      - main  # Trigger deployment on pushes to the main branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Copy files to server via SSH
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.SERVER_HOST }}
-        username: ${{ secrets.SERVER_USERNAME }}
-        key: ${{ secrets.SERVER_SSH_KEY }}
-        source: "."
-        target: "/path/to/your/server/spalivewire"
+      - name: Checkout code
+        uses: actions/checkout@v3
 #
-    - name: Run Artisan commands on server
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SERVER_HOST }}
-        username: ${{ secrets.SERVER_USERNAME }}
-        key: ${{ secrets.SERVER_SSH_KEY }}
-        script: |
-          cd /www/kailashwithlivewire.bivekp18.sg-host.com/spalivewire
-          php artisan migrate --force
-          php artisan cache:clear
-          php artisan config:clear
-          php artisan route:clear
-          php artisan view:clear
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.0
+        with:
+          ssh-private-key: ${{ secrets.SERVER_SSH_KEY }}
+          ssh-key-passphrase: ${{ secrets.SERVER_SSH_PASSPHRASE }}
+
+      - name: Deploy to server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          source: "."
+          target: "/path/to/your/server/spalivewire"
+
+      - name: Run Artisan Commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          script: |
+            cd /path/to/your/server/spalivewire
+            php artisan migrate
+            php artisan cache:clear
+            # Add other artisan commands as needed
