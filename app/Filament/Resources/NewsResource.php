@@ -18,6 +18,10 @@ class NewsResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationGroup = 'Blog';
+
+    protected static ?string $navigationGroupIcon = 'heroicon-o-collection'; // Example icon
+
     public static function form(Form $form): Form
     {
         return $form
@@ -27,7 +31,12 @@ class NewsResource extends Resource
                     ->maxLength(255),
                 RichEditor::make('content')->columnSpanFull()
                     ->required(),
-                SpatieMediaLibraryFileUpload::make('image')->disk('storage')->directory('images')->image(),
+                SpatieMediaLibraryFileUpload::make('image')
+                    ->collection('image') // Make sure this matches the collection in your model
+                    ->image()
+                    ->disk('public')
+                    ->maxSize(1024),
+
                 // FileUpload::make('image')
                 //     ->disk('public') // Use 'public' disk
                 //     ->directory('') // Store files directly in the 'public' disk

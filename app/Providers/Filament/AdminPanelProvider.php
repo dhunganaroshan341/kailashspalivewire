@@ -5,6 +5,7 @@ namespace App\Providers\Filament;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationGroup;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -27,18 +28,36 @@ class AdminPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
+            ->brandName('Kailash Group')
+            ->brandLogo(asset('kailashgroupnepal_logo1.jpg'))
             ->plugins([FilamentScaffoldPlugin::make(),
                 ActivitylogPlugin::make(),
                 FilamentUmamiPlugin::make(),
                 Blog::make(),
-            ]
-            )
+            ])->sidebarCollapsibleOnDesktop()
+            ->collapsedSidebarWidth('9rem')
             ->default()
             ->id('admin')
             ->path('admin')
             ->login()
             ->colors([
-                'primary' => Color::Amber,
+                'danger' => Color::Rose,
+                'gray' => Color::Gray,
+                'info' => Color::Blue,
+                'primary' => Color::Indigo,
+                'success' => Color::Emerald,
+                'warning' => Color::Orange,
+            ])->navigationGroups([
+                // NavigationGroup::make()
+                //     ->label('Brands Page')
+                //     ->icon('heroicon-o-shopping-team'),
+                // NavigationGroup::make()
+                //     ->label('Gallery Page')
+                //     ->icon('heroicon-o-shopping-cart'),
+                // NavigationGroup::make()
+                //     ->label('About Page')
+                //     ->icon('heroicon-o-pencil'),
+
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
@@ -50,15 +69,15 @@ class AdminPanelProvider extends PanelProvider
                 // Widgets\AccountWidget::class,
                 // Widgets\FilamentInfoWidget::class,
                 // this is the grouped stats widget
-                // \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsGrouped::class,
+                \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsGrouped::class,
 
                 // these are the separate stats widgets
-                // \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsLiveVisitors::class,
-                // \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsPageViews::class,
-                // \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsVisitors::class,
-                // \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsVisits::class,
-                // \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsBounces::class,
-                // \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsTotalTime::class,
+                \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsLiveVisitors::class,
+                \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsPageViews::class,
+                \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsVisitors::class,
+                \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsVisits::class,
+                \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsBounces::class,
+                \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsTotalTime::class,
 
                 // // and some table widgets
                 // \Schmeits\FilamentUmami\Widgets\UmamiWidgetTableUrls::class,
@@ -75,12 +94,12 @@ class AdminPanelProvider extends PanelProvider
                 // \Schmeits\FilamentUmami\Widgets\UmamiWidgetTableEvents::class,
                 // \Schmeits\FilamentUmami\Widgets\UmamiWidgetTableQuery::class,
 
-                // grouped table widgets
+                // // grouped table widgets
                 // \Schmeits\FilamentUmami\Widgets\UmamiWidgetTableGroupedPages::class,
                 // \Schmeits\FilamentUmami\Widgets\UmamiWidgetTableGroupedGeo::class,
                 // \Schmeits\FilamentUmami\Widgets\UmamiWidgetTableGroupedClientInfo::class,
 
-                // chart widgets
+                // // chart widgets
                 // \Schmeits\FilamentUmami\Widgets\UmamiWidgetGraphPageViews::class,
                 // \Schmeits\FilamentUmami\Widgets\UmamiWidgetGraphSessions::class,
                 // \Schmeits\FilamentUmami\Widgets\UmamiWidgetGraphEvents::class,

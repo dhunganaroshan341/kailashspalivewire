@@ -4,9 +4,9 @@ namespace App\Livewire;
 
 use App\Models\AboutSection;
 use App\Models\BannerSlider;
-use App\Models\Brand;
 use App\Models\Contact;
-use App\Models\Milestone;
+use App\Models\HomeBrand;
+use App\Models\MileStone;
 use App\Models\News;
 use App\Models\OurCommitment;
 use App\Models\TestimonialSection;
@@ -35,16 +35,17 @@ class Home extends Component
         // Fetch data
         $this->banners = BannerSlider::all();
         $this->about = AboutSection::first();
-        $this->brands = Brand::all();
+        $this->brands = HomeBrand::all();
         $this->testimonials = TestimonialSection::all();
         $this->commitments = OurCommitment::all();
-        $this->milestones = Milestone::all();
+        $this->milestones = MileStone::all();
         $this->news = News::latest()->get();
         $this->contacts = Contact::all();
     }
 
     public function render()
     {
+
         return view('livewire.home');
     }
 }

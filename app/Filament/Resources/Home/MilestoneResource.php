@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Home;
 
 use App\Filament\Resources\Home\MilestoneResource\Pages;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -12,7 +13,7 @@ class MilestoneResource extends Resource
 {
     protected static ?string $model = \App\Models\MileStone::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-flag';
 
     protected static ?string $navigationGroup = 'Home Control';
 
@@ -20,7 +21,11 @@ class MilestoneResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TextInput::make('title')
+                    ->required()
+                    ->maxLength(255),
+                TextInput::make('date')->label('number')->required(),
+
             ]);
     }
 
@@ -28,7 +33,9 @@ class MilestoneResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('title'),
+
+                Tables\Columns\TextColumn::make('date')->label('number'),
             ])
             ->filters([
                 //

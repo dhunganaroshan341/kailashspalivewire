@@ -16,8 +16,12 @@ class TeamMember extends Model
     protected $fillable = [
         'name',
         'description',
-        'image_path',
+        'image',
         'role',
+        'facebook',
+        'twitter',
+        'instagram',
+        'linkedin',
     ];
 
     public function socialMedia()

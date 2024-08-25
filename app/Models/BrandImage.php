@@ -13,6 +13,10 @@ class BrandImage extends Model
 
     protected $table = 'brand_images';
 
+    protected $casts = [
+        'image_path' => 'array',
+    ];
+
     protected $primaryKey = 'id'; // Correct property name
 
     // Define the relationship properly

@@ -22,7 +22,8 @@
                             <div class="about-content-wrapper">
                                 <div class="aboutus-content">
                                     <h3>{{ $section->title }}</h3>
-                                    <p>{{ $section->description }}</p> <!-- Use description instead of content -->
+                                    <p>{!! $section->description !!}</p>
+                                    <!-- Use description instead of content -->
                                 </div>
                                 <div class="about-action load-more">
                                     <a href="{{ $section->link }}">Talk to Us</a> <!-- Updated to use link -->
@@ -52,28 +53,27 @@
                         @foreach ($teamMembers as $member)
                             <div class="hteam-item">
                                 <div class="hteam-img">
-                                    <img src="{{ asset('storage/' . $member->image_path) }}" alt="{{ $member->name }}">
+                                    <img src="{{ asset('storage/' . $member->image) }}" alt="{{ $member->name }}">
                                 </div>
                                 <div class="htem-about">
                                     <div class="name">{{ $member->name }}</div>
                                     <div class="post">{{ $member->role }}</div>
                                     <div class="hsocial">
                                         <ul>
-                                            @foreach ($member->socialMedia as $social)
-                                                @if ($social->name === 'facebook')
-                                                    <li><a href="{{ $social->link }}"><i
-                                                                class="fa-brands fa-facebook"></i></a></li>
-                                                @elseif ($social->name === 'instagram')
-                                                    <li><a href="{{ $social->link }}"><i
-                                                                class="fa-brands fa-instagram"></i></a></li>
-                                                @elseif ($social->name === 'twitter')
-                                                    <li><a href="{{ $social->link }}"><i
-                                                                class="fa-brands fa-twitter"></i></a></li>
-                                                @elseif ($social->name === 'linkedin')
-                                                    <li><a href="{{ $social->link }}"><i
-                                                                class="fa-brands fa-linkedin"></i></a></li>
-                                                @endif
-                                            @endforeach
+
+
+                                            <li><a href="{{ $member->facebook }}"><i
+                                                        class="fa-brands fa-facebook"></i></a></li>
+
+                                            <li><a href="{{ $member->instagram }}"><i
+                                                        class="fa-brands fa-instagram"></i></a></li>
+
+                                            <li><a href="{{ $member->link }}"><i class="fa-brands fa-twitter"></i></a>
+                                            </li>
+
+                                            <li><a href="{{ $member->linked_in }}"><i
+                                                        class="fa-brands fa-linkedin"></i></a></li>
+
                                         </ul>
                                     </div>
                                 </div>

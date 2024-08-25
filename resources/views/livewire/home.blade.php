@@ -8,7 +8,7 @@
                         <img src="{{ asset('storage/' . $banner->image) }}" alt="Banner Image">
                         <div class="overlay"></div>
                         <div class="banner-content">
-                            <p>{{ $banner->description ?? 'No description available' }}</p>
+                            <p>{!! $banner->description ?? 'No description available' !!}</p>
                             <h1>{{ $banner->title ?? 'No title available' }}</h1>
                         </div>
                     </div>
@@ -24,7 +24,7 @@
                     <div class="head-tag">{{ $about->title ?? 'About Us' }}</div>
                     <h1>About <span>{{ $about->sub_heading ?? 'Our Company' }}</span></h1>
                     <div class="about-des">
-                        <p class="para-head">{{ $about->description ?? 'No description available' }}</p>
+                        <p class="para-head">{!! $about->description ?? 'No description available' !!}</p>
                     </div>
                     <div class="more-button">
                         <a href="{{ route('about') }}">About Us</a>
@@ -122,7 +122,7 @@
                             </div>
                             <div class="commitment-content">
                                 <h3>{{ $commitment->title ?? 'Commitment Title' }}</h3>
-                                <p>{{ $commitment->description ?? 'No description available' }}</p>
+                                <p>{!! $commitment->description ?? 'No description available' !!}</p>
                             </div>
                         </div>
                     @endforeach
@@ -184,43 +184,27 @@
         </div>
     </section>
 
-    <section class="section-wrapper cta-section">
-        <div class="container">
-            {{-- <div class="cta-wrapper">
-                    @php
-                        $contact = $contacts->first() ? $contacts->first() : 'No contacts found';
-                    @endphp
 
-                    <div class="title-cta">
-                        <h3>{{ $contact->title }}</h3>
-                    </div>
-                    <div class="pgraph-cta">
-                        <p>{{ $contact->description }}</p>
-                    </div>
-                    <div class="load-more cta-link-more">
-                        <a href="{{ $contact->link }}">
-                            Contact Here
-                        </a>
-                    </div>
-                </div>
-            </div> --}}
-    </section>
 
     <section class="news-suscribe-section section-wrapper">
         <div class="container">
             <div class="news-suscribe-wrapper">
                 <div class="suscribe-title">
-                    <h4>{{ $subscribe_title ?? 'Subscribe Here' }}</h4>
+                    <h4>{{ $subscribe_title ?? 'Fill in the form from here' }}</h4>
                 </div>
                 <div class="suscribe-pgraph">
-                    <p>{{ $subscribe_description ?? 'Stay updated with our latest news.' }}</p>
+                    <p>{{ $subscribe_description ?? 'Stay updated with our latest news. and feel free to ask questions' }}
+                    </p>
                 </div>
-                <div class="suscribe-form">
-                    <form action="{{ route('subscribe') }}" method="POST">
-                        @csrf
-                        <input type="email" name="email" placeholder="Enter your email" required>
-                        <button type="submit">Subscribe</button>
-                    </form>
+                <div class="suscribe-form-wrap">
+                    <div class="suscribe-grid-form">
+                        <div class="control">
+                            <input class="input" type="email" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="control-suscribe-btn load-more">
+                            <a href="{{ route('subscribepost') }}">subscribe Here</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

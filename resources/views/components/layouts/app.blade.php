@@ -12,6 +12,25 @@
     <link rel="stylesheet" href="{{ asset('front/css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('front/css/responsive.css') }}">
     <title>Kailash Group Nepal</title>
+    <style>
+        .alert {
+            padding: 1em;
+            margin: 1em 0;
+            border-radius: 5px;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
     @livewireStyles
 </head>
 
@@ -20,8 +39,7 @@
         <nav>
             <div class="navbar-wrapper">
                 <div class="logo">
-                    <a href="/"><img src=" {{ asset('assets/img/kailashgroupnepal_logo1.jpg') }}"
-                            alt = "kailash-group"></a>
+                    <a href="/"><img src=" {{ asset('kailashgroupnepal_logo1.jpg') }}" alt = "kailash-group"></a>
                 </div>
                 <div class="menu-nav-all">
                     <div class="top-nav-wrapper">

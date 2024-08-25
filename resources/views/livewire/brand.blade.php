@@ -14,7 +14,7 @@
             <div class="brands-pg-wrapper">
                 @foreach ($brands as $brand)
                     <div class="brands-pg-item">
-                        <a href="{{ route('brand_details', $brand->id) }}" target="_blank">
+                        <a href="{{ route('brand-image', $brand->id) }}" target="_blank">
                             <div class="brands-pg-image">
                                 <img src="{{ asset('storage/' . $brand->logo_path) }}" alt="{{ $brand->name }}">
                             </div>

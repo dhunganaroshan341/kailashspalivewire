@@ -17,8 +17,8 @@
                 @foreach ($galleries as $gallery)
                     <div class="album-content">
                         <div class="album-column">
-                            <a class="detail-link" href="{{ route('gallery.show', $gallery->id) }}">
-                                <img src="{{ asset('storage/' . $gallery->image_path) }}" alt="{{ $gallery->title }}">
+                            <a class="detail-link" href="{{ route('gallery-item', $gallery->id) }}">
+                                <img src="{{ asset('storage/' . $gallery->image) }}" alt="{{ $gallery->title }}">
                             </a>
                         </div>
                         <p>{{ $gallery->title }}</p>

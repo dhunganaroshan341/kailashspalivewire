@@ -18,23 +18,27 @@ class AboutResource extends Resource
 {
     protected static ?string $model = About::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'About Page';
+
+    protected static ?string $navigationTitle = 'About Sections';
+
+    protected static ?string $navigationIcon = 'heroicon-o-information-circle';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 TextInput::make('title')
-                    ->required()
+                    ->nullable()
                     ->maxLength(255),
                 TextArea::make('description')
                     ->required(),
-                SpatieMediaLibraryFileUpload::make('image')->disk('storage')->directory('images')->image(),
-                // FileUpload::make('image')
-                //     ->disk('public') // Use 'public' disk
-                //     ->directory('') // Store files directly in the 'public' disk
-                //     ->required()
-                //     ->image() // Ensure the file is an image
+                // SpatieMediaLibraryFileUpload::make('image'),
+                FileUpload::make('image')
+                    ->disk('public') // Use 'public' disk
+                    ->directory('images') // Store files in 'storage/app/public/images'
+                    ->image(), // Ensure the file is an image
+
                 //     ->maxSize(2 * 1024), // Max file size (e.g., 2MB)
                 TextInput::make('order')
                     ->required()
@@ -48,7 +52,7 @@ class AboutResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('description')->limit(50),
-                ImageColumn::make('image')->disk('storage'),
+                ImageColumn::make('image')->disk('public'),
                 Tables\Columns\TextColumn::make('order'),
             ])
             ->filters([

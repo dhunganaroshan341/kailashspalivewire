@@ -3,15 +3,18 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\GalleryResource\Pages;
-use App\Filament\Resources\GalleryResource\RelationManagers;
 use App\Models\Gallery;
-use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class GalleryResource extends Resource
 {
@@ -19,11 +22,22 @@ class GalleryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationGroup = 'Gallery Page';
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                // Define the form schema
+                TextInput::make('title')
+                    ->required()
+                    ->maxLength(255),
+
+                // SpatieMediaLibraryFileUpload::make('image')->disk('pubilc'),
+                FileUpload::make('image')
+                    ->image()
+                    ->imageEditor(),
+
             ]);
     }
 
@@ -31,17 +45,24 @@ class GalleryResource extends Resource
     {
         return $table
             ->columns([
-                //
+                // Define table columns
+                TextColumn::make('title')
+                    ->sortable()
+                    ->searchable(),
+
+                ImageColumn::make('image')
+                    ->label('Image'),
+                // Optional: for square images, // Optional: Set maximum height
             ])
             ->filters([
-                //
+                // Define table filters if needed
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -49,7 +70,7 @@ class GalleryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            // Define relations if needed
         ];
     }
 
