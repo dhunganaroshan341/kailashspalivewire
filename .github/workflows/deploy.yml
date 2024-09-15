@@ -13,24 +13,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up SSH Agent
-        uses: webfactory/ssh-agent@v0.5.0
-        with:
-          ssh-private-key: ${{ secrets.SERVER_SSH_KEY }}
-        env:
-          SSH_ASKPASS: /tmp/passphrase.sh
-
-      - name: Provide passphrase
-        run: |
-          echo "#!/bin/bash" > /tmp/passphrase.sh
-          echo "echo ${{ secrets.SERVER_SSH_PASSPHRASE }}" >> /tmp/passphrase.sh
-          chmod +x /tmp/passphrase.sh
-
+      # Deploy the application to the server using password-based authentication
       - name: Deploy to server
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}  # Using password-based SSH authentication
           port: 18765 # Specify the port for SSH
           source: "."
           target: "/www/kailashwithlivewire.bivekp18.sg-host.com"
@@ -40,6 +29,7 @@ jobs:
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}  # Password for SSH
           port: 18765 # Specify the port for SSH
           script: |
             cd /www/kailashwithlivewire.bivekp18.sg-host.com
