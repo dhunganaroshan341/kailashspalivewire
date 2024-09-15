@@ -13,24 +13,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Deploy the application to the server using password-based authentication
+      - name: Set up SSH Agent
+        uses: webfactory/ssh-agent@v0.5.0
+        with:
+          ssh-private-key: ${{ secrets.SERVER_SSH_KEY }}  # Use your new private key
+
       - name: Deploy to server
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
-          password: ${{ secrets.SSH_PASSWORD }}  # Using password-based SSH authentication
-          port: 18765 # Specify the port for SSH
+          port: 18765
           source: "."
-          target: "/www/kailashwithlivewire.bivekp18.sg-host.com"
+          target: "/www/kailashwithlivewire.bivekp18.sg-host.com"  # Specify your server path
 
       - name: Run Artisan Commands
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
-          password: ${{ secrets.SSH_PASSWORD }}  # Password for SSH
-          port: 18765 # Specify the port for SSH
+          port: 18765
           script: |
             cd /www/kailashwithlivewire.bivekp18.sg-host.com
             php artisan migrate
