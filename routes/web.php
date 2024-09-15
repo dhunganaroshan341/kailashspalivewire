@@ -9,6 +9,7 @@ use App\Livewire\Front\News;
 use App\Livewire\Gallery;
 use App\Livewire\GalleryItem;
 use App\Livewire\Home;
+use App\Livewire\NewsDetail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,7 @@ Route::get('/brands', Brand::class)->name('brands');
 Route::get('/brands/{id}', BrandImage::class)->name('brand-image');
 Route::get('/news-notices', News::class)->name('newsnotice');
 Route::get('/news/{id}', News::class)->name('news');
+Route::get('/news-detail/{slug}', NewsDetail::class)->name('news-detail');
 Route::get('/contact', Contact::class)->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('userMessage.store');
 Route::get('/services', Home::class)->name('services');

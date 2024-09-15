@@ -11,11 +11,26 @@ class News extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
+    protected $table = 'fblog_posts';
+
+    protected $primary_key = 'id';
+
     protected $fillable = [
         'title',
         'slug',
+        'subtitle',
+        'body',
+        'status',
+        'published_at',
+        'cover_photo_path',
+        'photo_alt_text',
+        'scheduled_for',
         'content',
         'image',
+    ];
+
+    protected $casts = [
+        'published_at' => 'datetime',
     ];
 
     // public function media()

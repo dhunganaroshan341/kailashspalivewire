@@ -20,21 +20,31 @@ class BrandImagesResource extends Resource
 
     protected static ?string $navigationGroup = 'Brands Page';
 
+    public static function groupIcon(): ?string
+    {
+        return 'heroicon-o-document'; // Icon for the group
+    }
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Select::make('brand_id')
                     ->label('Brand')
-                    ->options(Brand::all()->pluck('id', 'name'))
+                    ->options(Brand::all()->pluck('name', 'id'))
                     ->required(),
 
-                FileUpload::make('image_path')->columnSpanFull()
-                    ->disk('public')->multiple()->panelLayout('grid')->reorderable()
-                    ->directory('images') // Specify the directory within the public disk
-                    ->maxSize(10024)
-                    ->image() // Ensure that only images can be uploaded
-                    ->required(), // Make it required if it's mandatory
+                FileUpload::make('image_path')
+                    ->columnSpanFull()
+                    ->disk('public') // Use the 'public' disk
+                    ->multiple() // Allow multiple files
+                    ->panelLayout('grid') // Use grid layout
+                    ->reorderable() // Allow reordering
+                    ->directory('images') // Directory within the disk
+                    ->maxSize(10024) // Maximum file size in KB
+                    ->image() // Restrict to image files
+                    ->required(), // Make it required
+                // Other fields...
             ]);
 
     }
@@ -43,7 +53,7 @@ class BrandImagesResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('brand_id')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('brand.name')->sortable()->searchable(),
                 Tables\Columns\ImageColumn::make('image_path')->sortable()->searchable()->label('Image'),
             ])
             ->filters([

@@ -69,15 +69,15 @@ class AdminPanelProvider extends PanelProvider
                 // Widgets\AccountWidget::class,
                 // Widgets\FilamentInfoWidget::class,
                 // this is the grouped stats widget
-                \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsGrouped::class,
+                // \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsGrouped::class,
 
-                // these are the separate stats widgets
-                \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsLiveVisitors::class,
-                \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsPageViews::class,
-                \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsVisitors::class,
-                \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsVisits::class,
-                \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsBounces::class,
-                \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsTotalTime::class,
+                // // these are the separate stats widgets
+                // \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsLiveVisitors::class,
+                // \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsPageViews::class,
+                // \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsVisitors::class,
+                // \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsVisits::class,
+                // \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsBounces::class,
+                // \Schmeits\FilamentUmami\Widgets\UmamiWidgetStatsTotalTime::class,
 
                 // // and some table widgets
                 // \Schmeits\FilamentUmami\Widgets\UmamiWidgetTableUrls::class,

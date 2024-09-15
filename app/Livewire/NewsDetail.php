@@ -7,10 +7,21 @@ use Livewire\Component;
 
 class NewsDetail extends Component
 {
-    public function render($id)
-    {
-        $newsItem = ModelsNews::where('id', $id)->first();
+    public $slug; // Add a public property for the slug
 
-        return view('livewire.news-detail', compact('newsItem'));
+    public function mount($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    public function render()
+    {
+        $newsItem = ModelsNews::where('slug', $this->slug)->firstOrFail();
+        $otherPosts = ModelsNews::where('slug', '!=', $this->slug)
+            ->orderBy('published_at', 'desc')
+            ->take(5) // Adjust the number of other posts as needed
+            ->get();
+
+        return view('livewire.news-detail', compact('newsItem', 'otherPosts'));
     }
 }

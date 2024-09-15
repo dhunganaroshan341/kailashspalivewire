@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Front;
 
+use App\Models\News as ModelNews;
 use Livewire\Component;
 
 class News extends Component
@@ -10,7 +11,7 @@ class News extends Component
 
     public function render()
     {
-        $news = News::all();
+        $news = ModelNews::all();
 
         return view('livewire.news_notice', compact('news'));
     }

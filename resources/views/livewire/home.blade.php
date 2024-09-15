@@ -162,7 +162,7 @@
                         @foreach ($news as $item)
                             <div class="post-item">
                                 <div class="post-img">
-                                    <img src="{{ asset('storage/' . ($item->image ?? 'default-news-image.png')) }}"
+                                    <img src="{{ asset('storage/' . ($item->cover_photo_path ?? 'default-news-image.png')) }}"
                                         alt="News Image">
                                 </div>
                                 <div class="post-content">

@@ -19,14 +19,14 @@
                         <div class="postblog-item">
                             <div class="post-img">
                                 <!-- Add image display here -->
-                                <img src="{{ asset('storage/' . $item->featured_image) }}" alt="{{ $item->title }}">
+                                <img src="{{ asset('storage/' . $item->cover_photo_path) }}" alt="{{ $item->title }}">
                             </div>
                             <div class="post-content">
                                 <div class="post-title">
                                     <h2>{{ $item->title }}</h2>
                                 </div>
                                 <div class="read-more-text">
-                                    <a href="{{ route('newsdetail', $item->slug) }}">Read More</a>
+                                    <a href="{{ route('news-detail', $item->slug) }}">Read More</a>
                                 </div>
                             </div>
                         </div>
