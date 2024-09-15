@@ -15,11 +15,11 @@ jobs:
 
       # Deploy via FTP to the root directory of your site
       - name: Deploy to server via FTP
-        uses: SamKirkland/FTP-Deploy-Action@4.1.0
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0  # Updated version
         with:
-          ftp-server: "ftp://${{ secrets.FTP_HOST }}"
-          ftp-username: ${{ secrets.FTP_USERNAME }}
-          ftp-password: ${{ secrets.FTP_PASSWORD }}
+          server: "${{ secrets.FTP_HOST }}"  # Correct variable for FTP server
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
           local-dir: "./"  # Your Laravel app root
           server-dir: "/"  # Deploy to the root of kailashwithlivewire.bivekp18.sg-host.com
 
