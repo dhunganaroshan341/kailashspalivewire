@@ -37,7 +37,7 @@
                                             alt="{{ $section->title }}">
                                     </div>
                                 </div>
-                            @elseif ($index % 2 == 0)
+                            @elseif ($index % 2 == 1)
                                 <!-- For even indexes (except the first), image on the right -->
                                 <div class="about-content-wrapper">
                                     <div class="aboutus-content">
