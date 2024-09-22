@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('media_resources', function (Blueprint $table) {
-            $table->id();
+        Schema::table('media_resources', function (Blueprint $table) {
+            //
             $table->json('media_path');
-            $table->timestamps();
         });
     }
 
@@ -23,6 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('media_resources');
+        Schema::table('media_resources', function (Blueprint $table) {
+            //
+            $table->json('media_path');
+        });
     }
 };
