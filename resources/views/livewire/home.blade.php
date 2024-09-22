@@ -106,7 +106,7 @@
     @endif
     </div>
     </section>
-    @if (isset($contactDescriptions) && $contactDescriptions->isNotEmpty())
+    @if (isset($contactDescriptions) && $contactDescriptions != null)
         <section class="section-wrapper cta-section">
             <div class="container">
                 {{-- @foreach ($contactDescriptions as $description) --}}
