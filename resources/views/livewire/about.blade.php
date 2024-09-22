@@ -21,10 +21,10 @@
                     @foreach ($sections as $index => $section)
                         <div class="content-module-wrap">
                             @if ($index === 0)
-                                <!-- The first section comes to the top with image on the right -->
+                                <!-- The first section comes on top with no title and image on the right -->
                                 <div class="about-content-wrapper">
                                     <div class="aboutus-content">
-                                        <h3>{{ $section->title }}</h3>
+                                        <!-- No Title for the First Section -->
                                         <p>{!! $section->description !!}</p>
                                     </div>
                                     <div class="about-action load-more">
@@ -38,7 +38,7 @@
                                     </div>
                                 </div>
                             @elseif ($index % 2 == 0)
-                                <!-- For even indexes after the first, image on the right -->
+                                <!-- For even indexes (except the first), image on the right -->
                                 <div class="about-content-wrapper">
                                     <div class="aboutus-content">
                                         <h3>{{ $section->title }}</h3>
@@ -74,32 +74,6 @@
                             @endif
                         </div>
                     @endforeach
-                </div>
-            </section>
-
-
-            <!-- Static Content -->
-            <section class="section-wrapper">
-                <div class="container">
-                    <div class="about-pg-section">
-                        <div class="about-pg-diff">
-                            <div class="about-des">
-                                <p class="para-head">With 17+ Years of experience, the journey of Kailash Group Nepal
-                                    started in 2001. This Group is the formation of more than 10 different companies,
-                                    including Travel & Trekking, Marathon, Investment Offices, Heli Services, Hotels &
-                                    Resorts in Kathmandu & Pokhara, and a Bricks company in Chitwan, etc.</p>
-                            </div>
-
-                            <div class="about-des">
-                                <p class="para-head">With 17+ Years of experience, Kailash Group Nepal is involved in
-                                    numerous sectors including travel, trekking, heli services, investment offices, and
-                                    more.</p>
-                            </div>
-                        </div>
-                        <div class="img-about-pg">
-                            <img class="img" src="./img/001-1.jpg" alt="About Image">
-                        </div>
-                    </div>
                 </div>
             </section>
 
