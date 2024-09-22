@@ -5,8 +5,9 @@ namespace App\Filament\Resources\Home;
 use App\Filament\Resources\Home\HomeBrandResource\Pages\CreateHomeBrand;
 use App\Filament\Resources\Home\HomeBrandResource\Pages\EditHomeBrand;
 use App\Filament\Resources\Home\HomeBrandResource\Pages\ListHomeBrands;
-use App\Models\HomeBrand;
+use App\Models\BrandJourney;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -15,7 +16,7 @@ use Filament\Tables\Table;
 
 class HomeBrandResource extends Resource
 {
-    protected static ?string $model = HomeBrand::class;
+    protected static ?string $model = BrandJourney::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-briefcase';
 
@@ -25,7 +26,7 @@ class HomeBrandResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')
+                TextInput::make('title')
                     ->label('Name')
                     ->required(),
 
@@ -36,12 +37,12 @@ class HomeBrandResource extends Resource
                 // TextInput::make('website')->label('Website'),
 
                 // TextInput::make('address')->label('Address'),
-                TextInput::make('year')->label('Estd year')->nullable(),
-                FileUpload::make('logo_path')
+                TextInput::make('date')->label('Estd year')->nullable(),
+                FileUpload::make('image')
                     ->label('Logo /Image')
-                    ->disk('public'),
+                    ->disk('public')->directory('images'),
 
-                TextInput::make('description')->label('Description'),
+                RichEditor::make('description')->label('Description'),
             ]);
     }
 
@@ -49,8 +50,8 @@ class HomeBrandResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->label('Brand'),
-                Tables\Columns\ImageColumn::make('logo_path')->label('Logo'),
+                Tables\Columns\TextColumn::make('title')->label('Brand'),
+                Tables\Columns\ImageColumn::make('image')->label('Logo'),
             ])
             ->filters([
                 //

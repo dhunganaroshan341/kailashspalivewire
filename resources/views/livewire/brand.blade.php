@@ -22,7 +22,7 @@
                                 <h2>{{ $brand->name }}</h2>
                             </div>
                             <div class="brands-pgdetail">
-                                <p>{{ $brand->location }}</p>
+                                <p>{{ $brand->address }}</p>
                             </div>
                         </a>
                     </div>

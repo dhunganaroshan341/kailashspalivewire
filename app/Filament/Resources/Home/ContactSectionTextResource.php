@@ -2,22 +2,32 @@
 
 namespace App\Filament\Resources\Home;
 
-use App\Filament\Resources\Home\CommitmentResource\Pages;
-use App\Models\OurCommitment;
-use Filament\Forms\Components\FileUpload;
+use App\Filament\Resources\Home\ContactSectionTextResource\Pages;
+use App\Models\HomeContactSectionDescription;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
 
-class CommitmentResource extends Resource
+class ContactSectionTextResource extends Resource
 {
-    protected static ?string $model = OurCommitment::class;
+    protected static ?string $model = HomeContactSectionDescription::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-hand-raised';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    // Customize the singular label for the resource
+    public static function getLabel(): string
+    {
+        return 'Contact Description'; // Custom singular label
+    }
+
+    // Customize the plural label for the resource
+    public static function getPluralLabel(): string
+    {
+        return 'Contact Descriptions'; // Custom plural label for sidebar
+    }
 
     protected static ?string $navigationGroup = 'Home Control';
 
@@ -25,28 +35,27 @@ class CommitmentResource extends Resource
     {
         return $form
             ->schema([
+                //
                 TextInput::make('title')
                     ->nullable()
                     ->maxLength(255),
                 Textarea::make('description')
                     ->required(),
-                // SpatieMediaLibraryFileUpload::make('image'),
-                FileUpload::make('image')
-                    ->disk('public') // Use 'public' disk
-                    ->directory('images') // Store files in 'storage/app/public/images'
-                    ->image(), // Ensure the file is an image
-
             ]);
     }
 
+    // Remove the table method since we don't need a table
+    // public static function table(): void
+    // {
+    //     // No table required, you can leave this empty
+    // }
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
+                //
                 Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('description')->limit(50),
-                ImageColumn::make('image')->disk('public'),
-                // Tables\Columns\TextColumn::make('order'),
+                Tables\Columns\TextColumn::make('description'),
             ])
             ->filters([
                 //
@@ -71,9 +80,11 @@ class CommitmentResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCommitments::route('/'),
-            'create' => Pages\CreateCommitment::route('/create'),
-            'edit' => Pages\EditCommitment::route('/{record}/edit'),
+            'index' => Pages\ListContactSectionTexts::route('/'),
+            // 'index' => Pages\CreateContactSectionText::route('/create'),
+            'create' => Pages\CreateContactSectionText::route('/create'),
+            'edit' => Pages\EditContactSectionText::route('/{record}/edit'),
+            // 'form' => Pages\EditContactSectionText::route('/'),
         ];
     }
 }

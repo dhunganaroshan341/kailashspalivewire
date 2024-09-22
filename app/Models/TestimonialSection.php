@@ -21,7 +21,7 @@ class TestimonialSection extends Model
     // public $timestamps = false;
     protected $guarded = ['id'];
 
-    protected $fillable = ['name', 'position', 'testimonial', 'compay', 'rating', 'image_path'];
+    protected $fillable = ['name', 'position', 'testimonial', 'compay', 'rating', 'image_path', 'testimonial_title'];
     // protected $hidden = [];
 
     /*

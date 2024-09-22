@@ -12,12 +12,16 @@ class BrandImage extends Component
 
     public $brand; // Public property to hold the brand item data
 
+    public $brandMain;
+
+    public $brandImage;
+
     public $brandTitle;
 
     public function mount($id)
     {
         $this->id = $id; // Set the ID property
-
+        $this->brandMain = Brand::find($id);
         // Fetch BrandImage by ID
         $this->brand = ModelsBrandImage::find($id);
 
@@ -35,8 +39,11 @@ class BrandImage extends Component
     public function render()
     {
         return view('livewire.brand-image', [
+            'brandMain' => $this->brand,
             'brand' => $this->brand,
             'brandTitle' => $this->brandTitle,
         ]);
+        // dd($this->brand);
+
     }
 }

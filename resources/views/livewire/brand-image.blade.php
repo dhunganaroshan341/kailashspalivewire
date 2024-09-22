@@ -16,28 +16,28 @@
             <div class="brandsdetail-wrapper">
                 <div class="brands-pg-wrapper brands-contacts-detail">
                     <div class="brands-pg-item">
-                        <a href="{{ $brand->website }}">
+                        <a href="{{ $brandMain->website }}">
                             <div class="brands-pg-image">
-                                <img src="{{ asset('storage/' . $brand->logo_path) }}" alt="{{ $brand->name }}">
+                                <img src="{{ asset('storage/' . $brandMain->logo_path) }}" alt="{{ $brandMain->name }}">
                             </div>
                         </a>
                     </div>
                     <div class="contact-info-brands">
                         <h3>Contact Information</h3>
-                        <p><i class="fas fa-phone"></i> {{ $brand->phone }}</p>
-                        <p><i class="fas fa-envelope"></i> {{ $brand->email }}</p>
+                        <p><i class="fas fa-phone"></i> {{ $brandMain->phone }}</p>
+                        <p><i class="fas fa-envelope"></i> {{ $brandMain->email }}</p>
                     </div>
                     <div class="contact-info-brands">
                         <h3>Visit Website</h3>
-                        <a href="{{ $brand->website }}">{{ $brand->website }}</a>
+                        <a href="{{ $brandMain->website }}">{{ $brandMain->website }}</a>
                     </div>
                 </div>
                 <div class="brands-content-details">
                     <div class="brands-top-title">
-                        <h2>{{ $brand->name }}</h2>
+                        <h2>{{ $brandMain->name }}</h2>
                     </div>
                     <div class="brands-details-data">
-                        <p>{{ $brand->description }}</p>
+                        <p>{{ $brandMain->description }}</p>
                     </div>
 
                     <div class="brands-details-images">

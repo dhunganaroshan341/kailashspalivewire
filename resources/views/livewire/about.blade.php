@@ -17,25 +17,46 @@
 
             <section class="aboutus-section section-wrapper">
                 <div class="aboutus-home-wrapper container">
-                    @foreach ($sections as $section)
+                    @foreach ($sections as $index => $section)
                         <div class="content-module-wrap">
-                            <div class="about-content-wrapper">
-                                <div class="aboutus-content">
-                                    <h3>{{ $section->title }}</h3>
-                                    <p>{!! $section->description !!}</p>
-                                    <!-- Use description instead of content -->
+                            @if ($index % 2 == 0)
+                                <!-- For even indexes, image on the right -->
+                                <div class="about-content-wrapper">
+                                    <div class="aboutus-content">
+                                        <h3>{{ $section->title }}</h3>
+                                        <p>{!! $section->description !!}</p>
+                                    </div>
+                                    <div class="about-action load-more">
+                                        <a href="{{ $section->link }}">Talk to Us</a>
+                                    </div>
                                 </div>
-                                <div class="about-action load-more">
-                                    <a href="{{ $section->link }}">Talk to Us</a> <!-- Updated to use link -->
+                                <div class="about-img-wrapper">
+                                    <div class="aboutus-img">
+                                        <img src="{{ asset('storage/' . $section->image) }}"
+                                            alt="{{ $section->title }}">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="about-img-wrapper">
-                                <div class="aboutus-img">
-                                    <img src="{{ asset('storage/' . $section->image) }}" alt="{{ $section->title }}">
+                            @else
+                                <!-- For odd indexes, image on the left -->
+                                <div class="about-img-wrapper">
+                                    <div class="aboutus-img">
+                                        <img src="{{ asset('storage/' . $section->image) }}"
+                                            alt="{{ $section->title }}">
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="about-content-wrapper">
+                                    <div class="aboutus-content">
+                                        <h3>{{ $section->title }}</h3>
+                                        <p>{!! $section->description !!}</p>
+                                    </div>
+                                    <div class="about-action load-more">
+                                        <a href="{{ $section->link }}">Talk to Us</a>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     @endforeach
+
                 </div>
             </section>
 

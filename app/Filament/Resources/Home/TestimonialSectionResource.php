@@ -7,6 +7,7 @@ use App\Models\TestimonialSection as ModelTestimonialSection;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -25,9 +26,13 @@ class TestimonialSectionResource extends Resource
     {
         return $form
             ->schema([
+                Toggle::make(name: 'enable')->default('true'),
+                TextInput::make(name: 'testimonial_title')
+                    ->label('Message Title')->placeholder('Message from Chairman')
+                    ->required()->columnSpanFull(),
 
                 TextInput::make('name')
-                    ->label('Name')
+                    ->label('written by')->placeholder('Tashi Gurung')
                     ->required(),
                 TextInput::make('position')
                     ->label('position'),

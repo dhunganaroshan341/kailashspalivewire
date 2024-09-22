@@ -1,30 +1,35 @@
-name: Deploy Laravel Application
+name: FTP Deploy
 
 on:
   push:
     branches:
-      - main  # Trigger deployment on pushes to the main branch
+      - main  # Deploy on push to the main branch
 
 jobs:
-  deploy:
+  ftp-deploy:
+    name: Deploy Laravel Files
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Deploy via FTP to the root directory of your site
-      - name: Deploy to server via FTP
-        uses: SamKirkland/FTP-Deploy-Action@4.3.0  # Updated version
+      - name: Upload files via FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.3.1
         with:
-          server: "${{ secrets.FTP_HOST }}"  # Correct variable for FTP server
-          username: ${{ secrets.FTP_USERNAME }}
+          server: ftp.bivekp18.sg-host.com
+          username: kailashgroup@bivekp18.sg-host.com
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: "./"  # Your Laravel app root
-          server-dir: "/"  # Deploy to the root of kailashwithlivewire.bivekp18.sg-host.com
-
-      # Run Artisan commands via HTTP
-      - name: Run Artisan Commands via HTTP
-        run: |
-          curl https://kailashwithlivewire.bivekp18.sg-host.com/artisan/migrate
-          curl https://kailashwithlivewire.bivekp18.sg-host.com/artisan/cache-clear
+          port: 21
+          local-dir: ./  # The local root directory of your Laravel project
+          server-dir: /   # This is the root directory of your remote FTP server
+          exclude: |
+            .git*
+            node_modules/
+            vendor/
+            .env
+            storage/
+            tests/
+            .github/  # Exclude GitHub actions directory itself
+          dry-run: true  # For testing the exclusions (remove this in production)
+          debug: true    # Enable debug to troubleshoot issues

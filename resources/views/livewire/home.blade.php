@@ -43,8 +43,9 @@
             <div class="our-brands">
                 <div class="top-sectiom-title">
                     <div class="top-title">
-                        <h3>{{ $brands_title ?? 'Our Brands' }}</h3>
-                        <p>{{ $brands_description ?? 'Discover our trusted brands.' }}</p>
+                        <h3>{{ $brands_title ?? 'Our Brand Journey' }}</h3>
+                        <p>{{ $brands_description ?? 'Our story is a tapestry of passion, innovation, and commitment. From our humble beginnings to significant milestones, join us on a journey that shapes who we are today.' }}
+                        </p>
                     </div>
                 </div>
                 <div class="brands-wrapper">
@@ -60,7 +61,7 @@
                                     <div class="pt-amenities-title-class">
                                         <a href="{{ route('home') }}">{{ $brand->title ?? 'Brand Title' }}</a>
                                         <div class="section-text">
-                                            <p>{{ $brand->description ?? 'No description available' }}</p>
+                                            <p>{!! $brand->description ?? 'No description available' !!}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -71,17 +72,18 @@
             </div>
         </div>
     </section>
+    @if (isset($testimonials) && $testimonials->isNotEmpty())
+        <section class="section-wrapper">
+            <div class="container">
 
-    <section class="section-wrapper">
-        <div class="container">
-            @if (isset($testimonials) && $testimonials->isNotEmpty())
                 <div class="testimonial-wrapper">
-                    <div class="top-sectiom-title">
-                        <div class="top-title">
-                            <h3>{{ $testimonial_title ?? 'Testimonials' }}</h3>
-                        </div>
-                    </div>
                     @foreach ($testimonials as $testimonial)
+                        <div style="margin-top:3em" class="top-sectiom-title">
+                            <div class="top-title">
+                                <h3>{{ $testimonial->testimonial_title ?? 'Message from the chairman' }}</h3>
+                            </div>
+                        </div>
+
                         <div class="testimonial-item">
                             <div class="testimonial-img">
                                 <div class="testimonial-img-wrapper">
@@ -91,7 +93,7 @@
                             </div>
                             <div class="message-wrapper">
                                 <div class="testimonial-para">
-                                    {{ $testimonial->testimonial ?? 'No testimonial available' }}
+                                    {!! $testimonial->testimonial ?? 'No testimonial available' !!}
                                 </div>
                                 <div class="testimonial-title">{{ $testimonial->name ?? 'Anonymous' }}</div>
                                 <div class="testimonial-post">{{ $testimonial->position ?? 'Position' }}</div>
@@ -101,35 +103,88 @@
                 </div>
             @else
                 <p>No testimonials available.</p>
-            @endif
-        </div>
+    @endif
+    </div>
     </section>
+    @if (isset($contactDescriptions) && $contactDescriptions->isNotEmpty())
+        <section class="section-wrapper cta-section">
+            <div class="container">
+                {{-- @foreach ($contactDescriptions as $description) --}}
+                <div class="cta-wrapper">
+                    <div class="title-cta">
+                        <h3>{{ $contactDescription->title ?? 'Default Title' }}</h3>
+                        <!-- Fallback to a default title if it's missing -->
+                    </div>
+                    <div class="pgraph-cta">
+                        <p>{{ $contactDescription->description ?? 'Default description text. This is a fallback description for when no specific description is available.' }}
+                        </p>
+                    </div>
+                    <div class="load-more cta-link-more">
+                        <a href="{{ route('contact') }}">
+                            Contact Here
+                        </a>
+                    </div>
+                </div>
+                {{-- @endforeach --}}
+            </div>
+        </section>
+    @else
+        <section class="section-wrapper cta-section">
+            <div class="container">
+                <div class="cta-wrapper">
+                    <div class="title-cta">
+                        <h3>Default Title</h3>
+                    </div>
+                    <div class="pgraph-cta">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis officia qui, dolorum
+                            adipisci facilis mollitia beatae quaerat commodi repudiandae, repellendus harum provident
+                            animi quo aliquam aliquid. Illo, officia fugit! Sequi, nemo? Fugiat, nemo ullam laudantium
+                            blanditiis asperiores veritatis doloremque consequatur.</p>
+                    </div>
+                    <div class="load-more cta-link-more">
+                        <a href="#">
+                            Contact Here
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
 
-    <section class="section-wrapper">
+    <section class="section-wrapper commit-section">
         <div class="container">
             @if (isset($commitments) && $commitments->isNotEmpty())
-                <div class="commitment-wrapper">
+                <div class="our-commitments ">
                     <div class="top-sectiom-title">
                         <div class="top-title">
                             <h3>{{ $commitments_title ?? 'Our Commitments' }}</h3>
+                            <p>Kailash Group Hardware and Supplies,
+                                your one-stop destination for premium quality tools,
+                                materials, and equipment.</p>
                         </div>
                     </div>
-                    @foreach ($commitments as $commitment)
-                        <div class="commitment-item">
-                            <div class="commitment-img">
-                                <img src="{{ asset('storage/' . ($commitment->image ?? 'default-commitment-image.png')) }}"
-                                    alt="Commitment Image">
-                            </div>
-                            <div class="commitment-content">
-                                <h3>{{ $commitment->title ?? 'Commitment Title' }}</h3>
-                                <p>{!! $commitment->description ?? 'No description available' !!}</p>
-                            </div>
+                    <div class="commmitment-wrapper">
+                        <div class="commitment-lists owl-carousel owl-theme" id="commit-kailash">
+                            @foreach ($commitments as $commitment)
+                                <div class="item">
+                                    <div class="content-image">
+                                        <img src="{{ asset('storage/' . ($commitment->image ?? 'default-commitment-image.png')) }}"
+                                            alt="Commitment Image">
+                                    </div>
+                                    <div class="commitment-content">
+                                        <h3>{{ $commitment->title ?? 'Commitment Title' }}</h3>
+                                        <p>{{ $commitment->description ?? 'No description available' }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
-                    @endforeach
+                    </div>
                 </div>
             @endif
         </div>
     </section>
+
+
 
     <section class="section-wrapper honors-wrapper">
         @if (isset($milestones) && $milestones->isNotEmpty())
@@ -153,7 +208,8 @@
             <div class="top-sectiom-title">
                 <div class="top-title">
                     <h3>{{ $news_title ?? 'News & Notices' }}</h3>
-                    <p>{{ $news_description ?? 'Latest updates and notices.' }}</p>
+                    <p>{{ $news_description ?? 'Kailash Group Hardware and Supplies, your one-stop destination for premium quality tools, materials, and equipment.' }}
+                    </p>
                 </div>
             </div>
             <div class="post-news-section">
@@ -199,7 +255,8 @@
                 <div class="suscribe-form-wrap">
                     <div class="suscribe-grid-form">
                         <div class="control">
-                            <input class="input" type="email" name="email" placeholder="Enter your email" required>
+                            <input class="input" type="email" name="email" placeholder="Enter your email"
+                                required>
                         </div>
                         <div class="control-suscribe-btn load-more">
                             <a href="{{ route('subscribepost') }}">subscribe Here</a>

@@ -4,8 +4,9 @@ namespace App\Livewire;
 
 use App\Models\AboutSection;
 use App\Models\BannerSlider;
+use App\Models\BrandJourney;
 use App\Models\Contact;
-use App\Models\HomeBrand;
+use App\Models\HomeContactSectionDescription;
 use App\Models\MileStone;
 use App\Models\News;
 use App\Models\OurCommitment;
@@ -30,17 +31,20 @@ class Home extends Component
 
     public $contacts;
 
+    public $contactDescriptions;
+
     public function mount()
     {
         // Fetch data
         $this->banners = BannerSlider::all();
         $this->about = AboutSection::first();
-        $this->brands = HomeBrand::all();
+        $this->brands = BrandJourney::all();
         $this->testimonials = TestimonialSection::all();
         $this->commitments = OurCommitment::all();
         $this->milestones = MileStone::all();
         $this->news = News::latest()->get();
         $this->contacts = Contact::all();
+        $this->contactDescriptions = HomeContactSectionDescription::firstOrFail();
     }
 
     public function render()

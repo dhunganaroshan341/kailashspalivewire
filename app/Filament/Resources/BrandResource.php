@@ -43,9 +43,9 @@ class BrandResource extends Resource
                 //     ->nullable()
                 //     ->maxLength(20),
 
-                // TextInput::make('address')
-                //     ->nullable()
-                //     ->maxLength(255),
+                TextInput::make('address')
+                    ->nullable()->label('location')
+                    ->maxLength(255),
 
                 TextInput::make('website')
                     ->default('www.website.extensions')
