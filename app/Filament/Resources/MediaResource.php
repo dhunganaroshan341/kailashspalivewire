@@ -1,22 +1,19 @@
 <?php
 
-namespace App\Filament\Resources\Home;
+namespace App\Filament\Resources;
 
-use App\Filament\Resources\Home\NewsResource\Pages;
-use App\Models\News as ModelsNews;
+use App\Filament\Resources\MediaResource\Pages;
+use App\Models\MediaResource as ModelMediaResource;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class NewsResource extends Resource
+class MediaResource extends Resource
 {
-    protected static ?string $model = ModelsNews::class;
+    protected static ?string $model = ModelMediaResource::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
-
-    protected static ?string $navigationGroup = 'Home Control';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
@@ -31,7 +28,6 @@ class NewsResource extends Resource
         return $table
             ->columns([
                 //
-                TextColumn::make('title'),
             ])
             ->filters([
                 //
@@ -56,9 +52,9 @@ class NewsResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListNews::route('/'),
-            'create' => Pages\CreateNews::route('/create'),
-            'edit' => Pages\EditNews::route('/{record}/edit'),
+            'index' => Pages\ListMedia::route('/'),
+            'create' => Pages\CreateMedia::route('/create'),
+            'edit' => Pages\EditMedia::route('/{record}/edit'),
         ];
     }
 }

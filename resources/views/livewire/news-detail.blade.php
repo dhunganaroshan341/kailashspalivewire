@@ -48,7 +48,7 @@
                                 <div class="post-title">{{ $post->title }}</div>
                                 <div class="post-des">{{ $post->meta_description }}</div>
                                 <div class="read-more-text">
-                                    <a href="{{ route('newsdetail', $post->slug) }}">Read More</a>
+                                    <a href="{{ route('news-detail', $post->slug) }}">Read More</a>
                                 </div>
                             </div>
                         </div>
