@@ -20,15 +20,32 @@
                 <div class="aboutus-home-wrapper container">
                     @foreach ($sections as $index => $section)
                         <div class="content-module-wrap">
-                            @if ($index % 2 == 0)
-                                <!-- For even indexes, image on the right -->
+                            @if ($index === 0)
+                                <!-- The first section comes to the top with image on the right -->
                                 <div class="about-content-wrapper">
                                     <div class="aboutus-content">
                                         <h3>{{ $section->title }}</h3>
                                         <p>{!! $section->description !!}</p>
                                     </div>
                                     <div class="about-action load-more">
-                                        <a href="{{ $section->link }}">Talk to Us</a>
+                                        <a href="{{ route('contact') }}">Talk to Us</a>
+                                    </div>
+                                </div>
+                                <div class="about-img-wrapper">
+                                    <div class="aboutus-img">
+                                        <img src="{{ asset('storage/' . $section->image) }}"
+                                            alt="{{ $section->title }}">
+                                    </div>
+                                </div>
+                            @elseif ($index % 2 == 0)
+                                <!-- For even indexes after the first, image on the right -->
+                                <div class="about-content-wrapper">
+                                    <div class="aboutus-content">
+                                        <h3>{{ $section->title }}</h3>
+                                        <p>{!! $section->description !!}</p>
+                                    </div>
+                                    <div class="about-action load-more">
+                                        <a href="{{ route('contact') }}">Talk to Us</a>
                                     </div>
                                 </div>
                                 <div class="about-img-wrapper">
@@ -51,7 +68,7 @@
                                         <p>{!! $section->description !!}</p>
                                     </div>
                                     <div class="about-action load-more">
-                                        <a href="{{ $section->link }}">Talk to Us</a>
+                                        <a href="{{ route('contact') }}">Talk to Us</a>
                                     </div>
                                 </div>
                             @endif
@@ -59,6 +76,7 @@
                     @endforeach
                 </div>
             </section>
+
 
             <!-- Static Content -->
             <section class="section-wrapper">
