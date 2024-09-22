@@ -9,6 +9,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class ContactSectionTextResource extends Resource
@@ -54,8 +55,8 @@ class ContactSectionTextResource extends Resource
         return $table
             ->columns([
                 //
-                Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('description'),
+                TextColumn::make('title'),
+                TextColumn::make('description'),
             ])
             ->filters([
                 //
