@@ -31,5 +31,5 @@ jobs:
             storage/
             tests/
             .github/  # Exclude GitHub actions directory itself
-          dry-run: true  # For testing the exclusions (remove this in production)
-          debug: true    # Enable debug to troubleshoot issues
+          # dry-run: true  # For testing the exclusions (remove this in production)
+          # debug: true    # Enable debug to troubleshoot issues
