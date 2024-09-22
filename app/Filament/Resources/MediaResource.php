@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\MediaResource\Pages;
 use App\Models\MediaResource as ModelMediaResource;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -20,6 +21,17 @@ class MediaResource extends Resource
         return $form
             ->schema([
                 //
+                FileUpload::make('media_path')
+                    ->columnSpanFull()
+                    ->disk('public') // Use the 'public' disk
+                    ->multiple() // Allow multiple files
+                    ->panelLayout('grid') // Use grid layout
+                    ->reorderable() // Allow reordering
+                    ->directory('images') // Directory within the disk
+                    ->maxSize(10024) // Maximum file size in KB
+                    ->image() // Restrict to image files
+                    ->required(), // Make it required
+                // Other fields...
             ]);
     }
 
@@ -28,6 +40,7 @@ class MediaResource extends Resource
         return $table
             ->columns([
                 //
+                Tables\Columns\ImageColumn::make('media_path')->sortable()->searchable()->label('Image'),
             ])
             ->filters([
                 //
