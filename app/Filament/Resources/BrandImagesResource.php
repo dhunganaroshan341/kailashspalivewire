@@ -10,6 +10,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class BrandImagesResource extends Resource
@@ -27,11 +28,14 @@ class BrandImagesResource extends Resource
 
     public static function form(Form $form): Form
     {
+        // Get IDs of brands already associated with BrandImages
+        $existingBrandIds = BrandImage::pluck('brand_id')->toArray();
+
         return $form
             ->schema([
                 Select::make('brand_id')
                     ->label('Brand')
-                    ->options(Brand::all()->pluck('name', 'id'))
+                    ->options(Brand::whereNotIn('id', $existingBrandIds)->pluck('name', 'id'))
                     ->required(),
 
                 FileUpload::make('image_path')
@@ -45,13 +49,13 @@ class BrandImagesResource extends Resource
                     ->image() // Restrict to image files
                     ->required(), // Make it required
             ]);
-
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
+                TextColumn::make('id')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('brand.name')->sortable()->searchable(),
                 Tables\Columns\ImageColumn::make('image_path')->sortable()->searchable()->label('Image'),
             ])

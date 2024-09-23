@@ -12,6 +12,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class AboutResource extends Resource
@@ -50,6 +51,7 @@ class AboutResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('id')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('description')->limit(50),
                 ImageColumn::make('image')->disk('public'),

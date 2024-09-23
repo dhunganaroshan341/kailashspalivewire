@@ -21,16 +21,16 @@ class MediaResource extends Resource
         return $form
             ->schema([
                 //
-                FileUpload::make('media_path')
-                    ->columnSpanFull()
-                    ->disk('public') // Use the 'public' disk
-                    ->multiple() // Allow multiple files
-                    ->panelLayout('grid') // Use grid layout
-                    ->reorderable() // Allow reordering
-                    ->directory('images') // Directory within the disk
-                    ->maxSize(10024) // Maximum file size in KB
-                    ->image() // Restrict to image files
-                    ->required(), // Make it required
+                // FileUpload::make('media_path')
+                //     ->columnSpanFull()
+                //     ->disk('public') // Use the 'public' disk
+                //     ->multiple() // Allow multiple files
+                //     ->panelLayout('grid') // Use grid layout
+                //     ->reorderable() // Allow reordering
+                //     ->directory('images') // Directory within the disk
+                //     ->maxSize(10024) // Maximum file size in KB
+                //     ->image() // Restrict to image files
+                //     ->required(), // Make it required
                 // Other fields...
             ]);
     }
@@ -66,8 +66,8 @@ class MediaResource extends Resource
     {
         return [
             'index' => Pages\ListMedia::route('/'),
-            'create' => Pages\CreateMedia::route('/create'),
-            'edit' => Pages\EditMedia::route('/{record}/edit'),
+            // 'create' => Pages\CreateMedia::route('/create'),
+            // 'edit' => Pages\EditMedia::route('/{record}/edit'),
         ];
     }
 }

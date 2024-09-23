@@ -3,8 +3,8 @@
 namespace App\Filament\Resources\MediaResource\Pages;
 
 use App\Filament\Resources\MediaResource;
-use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
+use Illuminate\Contracts\View\View;
 
 class ListMedia extends ListRecords
 {
@@ -13,7 +13,13 @@ class ListMedia extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            // Actions\CreateAction::make(),
         ];
+    }
+
+    public function render(): View
+    {
+        return view('filament.pages.list-media');
+        // resources\views\filament\pages\list-media.blade.php
     }
 }

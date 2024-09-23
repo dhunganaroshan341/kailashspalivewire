@@ -8,6 +8,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Auth;
 
@@ -65,6 +66,7 @@ class NewsResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('id')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('title')
                     ->sortable()
                     ->searchable(),

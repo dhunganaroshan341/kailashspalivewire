@@ -24,8 +24,16 @@ class ContactResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('brand_id')->required(),
-                TextInput::make('image_path')->required(),
+                TextInput::make('email')->required(),
+                TextInput::make('phone')->required(),
+                TextInput::make('address')->required(),
+                TextInput::make('contacts')
+                    ->required()
+                    ->reactive() // Makes the field reactive to add new inputs
+                    ->afterStateUpdated(function ($state, callable $set) {
+                        // Logic to add new input fields dynamically can be implemented here
+                    }),
+                // Add a button to add new contact inputs dynamically
             ]);
     }
 
@@ -33,7 +41,14 @@ class ContactResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('brand_id')->sortable()->searchable(),
+                TextColumn::make('email')->sortable()->searchable(),
+                TextColumn::make('phone')->sortable()->searchable(),
+                TextColumn::make('address')->sortable()->searchable(),
+                TextColumn::make('contacts')
+                    ->label('Contacts')
+                    ->formatStateUsing(fn ($state) => json_encode($state)) // Displaying contacts as JSON
+                    ->sortable()
+                    ->searchable(),
                 ImageColumn::make('image_path')->sortable()->searchable()->label('Image'),
             ])
             ->filters([

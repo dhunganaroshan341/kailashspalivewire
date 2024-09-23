@@ -22,16 +22,22 @@ class GalleryItemResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function getNavigationLabel(): string
+    {
+        return 'Gallery Images'; // Set the navigation label to "Gallery Images"
+    }
+
     protected static ?string $navigationGroup = 'Gallery Page';
 
     public static function form(FormsForm $form): FormsForm
     {
+        $existingGalleryIds = GalleryItem::pluck('gallery_id')->toArray();
 
         return $form
             ->schema([
                 Select::make('gallery_id')
                     ->label('Gallery')
-                    ->options(Gallery::all()->pluck('title', 'id'))
+                    ->options(Gallery::whereNotIn('id', $existingGalleryIds)->pluck('title', 'id'))
                     ->required(),
 
                 FileUpload::make('image')
@@ -56,6 +62,7 @@ class GalleryItemResource extends Resource
                 // TextColumn::make('title')
                 //     ->sortable()
                 //     ->searchable(),
+                TextColumn::make('id')->sortable()->searchable(),
 
                 TextColumn::make('gallery_id')
                     ->label('Gallery')
