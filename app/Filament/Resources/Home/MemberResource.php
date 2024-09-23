@@ -42,7 +42,7 @@ class MemberResource extends Resource
 
                 TextInput::make('role')
                     ->label('role'),
-                Textarea::make('description')->nullable()->columnSpanFull(),
+                Textarea::make('description')->nullable(),
                 TextInput::make('twitter')->nullable(),
                 TextInput::make('facebook')->nullable(),
                 TextInput::make('instagram')->nullable(),
