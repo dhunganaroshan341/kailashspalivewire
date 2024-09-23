@@ -65,6 +65,7 @@ class BrandResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('id')->searchable()->sortable(),
                 // Define table columns
                 TextColumn::make('name')
                     ->sortable()
@@ -88,8 +89,8 @@ class BrandResource extends Resource
 
                 ImageColumn::make('logo_path'),
 
-                TextColumn::make('description')
-                    ->limit(50),
+                // TextColumn::make('description')
+                //     ->limit(50),
             ])
             ->filters([
                 // Define table filters

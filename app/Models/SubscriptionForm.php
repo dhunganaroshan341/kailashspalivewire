@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class SubscriptionForm extends Model
 {
     use HasFactory;
+
+    protected $primaKey = 'id';
+
+    protected $table = 'subscription_forms';
+
+    protected $fillable = ['name', 'email', 'phone'];
 }

@@ -80,7 +80,7 @@
             <!-- Team Section (Dynamic) -->
             <section class="hteam-section section-wrapper">
                 <div class="container">
-                    <div class="top-section-title">
+                    <div class="top-sectiom-title">
                         <div class="top-title">
                             <h3>Our Awesome Team</h3>
                             <p>Our story is a tapestry of passion, innovation, and commitment. From our humble

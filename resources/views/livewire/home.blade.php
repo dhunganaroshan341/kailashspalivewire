@@ -102,7 +102,7 @@
                     @endforeach
                 </div>
             @else
-                <p>No testimonials available.</p>
+                <p></p>
     @endif
     </div>
     </section>
@@ -252,17 +252,28 @@
                     <p>{{ $subscribe_description ?? 'Stay updated with our latest news. and feel free to ask questions' }}
                     </p>
                 </div>
-                <div class="suscribe-form-wrap">
-                    <div class="suscribe-grid-form">
-                        <div class="control">
-                            <input class="input" type="email" name="email" placeholder="Enter your email"
-                                required>
-                        </div>
-                        <div class="control-suscribe-btn load-more">
-                            <a href="{{ route('subscribepost') }}">subscribe Here</a>
+                <form id="subscribe-form" action="{{ route('subscribe') }}" method="post">
+                    @csrf <!-- Make sure to include CSRF token -->
+                    <div class="suscribe-form-wrap">
+                        <div class="suscribe-grid-form">
+                            <div class="control">
+                                <input class="input" type="email" name="email" placeholder="Enter your email"
+                                    required>
+                            </div>
+                            <div class="control-suscribe-btn load-more">
+                                <!-- The actual submit button -->
+                                <button type="submit" style="display: none;">Submit</button>
+
+                                <!-- The anchor element to trigger form submission -->
+                                <a href="javascript:void(0);"
+                                    onclick="document.getElementById('subscribe-form').submit();">
+                                    Subscribe Here
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
+
             </div>
         </div>
     </section>

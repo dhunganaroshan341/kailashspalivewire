@@ -106,24 +106,26 @@
             <div class="footer-wrapper">
                 <div class="logo-wrapper">
                     <div class="logo-text">Kailash Group Nepal</div>
-                    <div class="fdes">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore.</div>
+                    <div class="fdes">A leading conglomerate in construction, manufacturing, trading, and real estate,
+                        committed to quality, innovation, and sustainable growth.</div>
                 </div>
                 <div class="footer-link-wrapper">
                     <div class="footer-item">
                         <div class="footer-title">Quicklinks</div>
                         <ul class="footer-list">
-                            <li><a href="">About Us</a></li>
-                            <li><a href="">Our Brands</a></li>
-                            <li><a href="">Our Guests</a></li>
+                            <li><a
+                                    href="A leading conglomerate in construction, manufacturing, trading, and real estate, committed to quality, innovation, and sustainable growth.">About
+                                    Us</a></li>
+                            <li><a href="{{ route('brands') }}">Our Brands</a></li>
+                            <li><a href="{{ route('gallerylist') }}">Our Guests</a></li>
                         </ul>
                     </div>
                     <div class="footer-item">
                         <div class="footer-title">Other Links</div>
                         <ul class="footer-list">
-                            <li><a href="">Gallery</a></li>
-                            <li><a href="">News & Notices</a></li>
-                            <li><a href="">Contact</a></li>
+                            <li><a href="{{ route('gallerylist') }}">Gallery</a></li>
+                            <li><a href="{{ route('newsnotice') }}">News & Notices</a></li>
+                            <li><a href="{{ route('contact') }}">Contact</a></li>
                         </ul>
                     </div>
                     <div class="footer-item">

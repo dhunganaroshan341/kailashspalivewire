@@ -44,7 +44,6 @@ class BrandImagesResource extends Resource
                     ->maxSize(10024) // Maximum file size in KB
                     ->image() // Restrict to image files
                     ->required(), // Make it required
-                // Other fields...
             ]);
 
     }

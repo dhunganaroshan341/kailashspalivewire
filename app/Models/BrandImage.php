@@ -2,62 +2,47 @@
 
 namespace App\Models;
 
+use App\Traits\MediaHandler;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class BrandImage extends Model
 {
-    use HasFactory;
+    use HasFactory, MediaHandler;
 
     protected $fillable = ['brand_id', 'image_path'];
 
-    protected $table = 'brand_images';
-
     protected $casts = [
-        'image_path' => 'array',
+        'image_path' => 'array', // Cast image_path to an array for multiple images
     ];
 
-    protected $primaryKey = 'id'; // Correct property name
-
-    // Define the relationship properly
-    public function brand()
-    {
-        return $this->belongsTo(Brand::class, 'brand_id');
-    }
-
-    // deleting  from the storage if edit delete selected , boot event listener
     protected static function boot()
     {
         parent::boot();
 
         static::updating(function ($model) {
-            // Check if the 'image_path' field is being updated
-            if ($model->isDirty('image_path')) {
-                // Get the original and new values of 'image_path'
-                $originalImages = $model->getOriginal('image_path');
-                $newImages = $model->image_path;
+            // Get the original and new images
+            $originalImages = $model->getOriginal('image_path');
+            $newImages = $model->image_path;
 
-                // Decode if necessary
-                if (is_string($originalImages)) {
-                    $originalImages = json_decode($originalImages, true) ?? [];
-                }
-                if (is_string($newImages)) {
-                    $newImages = json_decode($newImages, true) ?? [];
-                }
+            // Log the arrays to see what the delete function is dealing with
+            Log::info('Original Images:', $originalImages);
+            Log::info('New Images:', $newImages);
 
-                // Determine which images have been removed
-                $removedImages = array_diff($originalImages, $newImages);
-
-                // Delete the removed images from the storage
-                foreach ($removedImages as $imagePath) {
-                    // Check if the file exists to prevent errors
-                    if ($imagePath && Storage::disk('public')->exists($imagePath)) {
-                        // Delete the file
-                        Storage::disk('public')->delete($imagePath);
-                    }
-                }
-            }
+            // Use the MediaHandler trait to delete removed images
+            $model->deleteMedia($originalImages, $newImages, 'public');
         });
+
+        static::deleting(function ($model) {
+            // On deleting the entire model, remove all associated images
+            $model->deleteMedia($model->image_path, null, 'public');
+        });
+    }
+
+    // Define the relationship
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class, 'brand_id');
     }
 }

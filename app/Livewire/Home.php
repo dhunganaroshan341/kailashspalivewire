@@ -44,7 +44,7 @@ class Home extends Component
         $this->milestones = MileStone::all();
         $this->news = News::latest()->get();
         $this->contacts = Contact::all();
-        $this->contactDescriptions = HomeContactSectionDescription::firstOrFail();
+        $this->contactDescriptions = HomeContactSectionDescription::find(1);
     }
 
     public function render()

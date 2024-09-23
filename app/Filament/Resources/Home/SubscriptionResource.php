@@ -3,15 +3,16 @@
 namespace App\Filament\Resources\Home;
 
 use App\Filament\Resources\Home\SubscriptionResource\Pages;
-use App\Models\Home\Subscription;
+use App\Models\SubscriptionForm;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class SubscriptionResource extends Resource
 {
-    protected static ?string $model = Subscription::class;
+    protected static ?string $model = SubscriptionForm::class;
 
     protected static ?string $navigationGroup = 'Home Control';
 
@@ -22,6 +23,7 @@ class SubscriptionResource extends Resource
         return $form
             ->schema([
                 //
+
             ]);
     }
 
@@ -30,6 +32,12 @@ class SubscriptionResource extends Resource
         return $table
             ->columns([
                 //
+                TextColumn::make('id')
+                    ->label('No.')   // Display label for the column
+                    ->rowIndex(),       // This will generate an auto-incrementing index
+
+                // TextColumn::make("name")->sortable()->searchable(),
+                TextColumn::make('email')->sortable()->searchable(),
             ])
             ->filters([
                 //
@@ -55,8 +63,8 @@ class SubscriptionResource extends Resource
     {
         return [
             'index' => Pages\ListSubscriptions::route('/'),
-            'create' => Pages\CreateSubscription::route('/create'),
-            'edit' => Pages\EditSubscription::route('/{record}/edit'),
+            // 'create' => Pages\CreateSubscription::route('/create'),
+            // 'edit' => Pages\EditSubscription::route('/{record}/edit'),
         ];
     }
 }
