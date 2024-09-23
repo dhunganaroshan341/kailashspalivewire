@@ -29,20 +29,18 @@ class MemberResource extends Resource
                 //
                 TextInput::make('name')->required(),
                 FileUpload::make('image')->label('image')->image()->nullable()->disk('public')->directory('image'),
-                Select::make('role')
-                    ->label('Role')
-                    ->options([
-                        'ceo' => 'CEO',
-                        'staff' => 'Staff',
-                        'other' => 'Other', // Add an "Other" option
-                    ])
-                    ->reactive() // Make it reactive to update the form based on selection
-                    ->afterStateUpdated(fn ($state, callable $set) => $state === 'other' ? $set('custom_role', null) : $set('custom_role', null)),
+                // Select::make('role')
+                //     ->label('Role')
+                //     ->options([
+                //         'ceo' => 'CEO',
+                //         'staff' => 'Staff',
+                //         'other' => 'Other', // Add an "Other" option
+                //     ])
+                //     ->reactive() // Make it reactive to update the form based on selection
+                //     ->afterStateUpdated(fn ($state, callable $set) => $state === 'other' ? $set('custom_role', null) : $set('custom_role', null)),
 
-                TextInput::make('custom_role')
-                    ->label('<span style="color: green;">Custom Role</span>')
-                    ->visible(fn ($get) => $get('role') === 'other') // Show this field only if "Other" is selected
-                    ->nullable(),
+                TextInput::make('role')
+                    ->label('role'),
                 TextInput::make('description')->nullable(),
                 TextInput::make('twitter')->nullable(),
                 TextInput::make('facebook')->nullable(),
