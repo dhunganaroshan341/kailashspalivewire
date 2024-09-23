@@ -6,6 +6,7 @@ use App\Filament\Resources\Home\MemberResource\Pages;
 use App\Models\TeamMember;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -41,7 +42,7 @@ class MemberResource extends Resource
 
                 TextInput::make('role')
                     ->label('role'),
-                TextInput::make('description')->nullable(),
+                Textarea::make('description')->nullable()->columnSpanFull(),
                 TextInput::make('twitter')->nullable(),
                 TextInput::make('facebook')->nullable(),
                 TextInput::make('instagram')->nullable(),
