@@ -31,7 +31,7 @@ class Home extends Component
 
     public $contacts;
 
-    public $contactDescriptions;
+    public $contactDescription;
 
     public function mount()
     {
@@ -44,7 +44,7 @@ class Home extends Component
         $this->milestones = MileStone::all();
         $this->news = News::latest()->get();
         $this->contacts = Contact::all();
-        $this->contactDescriptions = HomeContactSectionDescription::find(1);
+        $this->contactDescription = HomeContactSectionDescription::first();
     }
 
     public function render()

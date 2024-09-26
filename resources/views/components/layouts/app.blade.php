@@ -5,13 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('front/css/main.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('front/css/main.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('front/css/main.min.css') }}">
     <link rel="stylesheet" href="{{ asset('front/css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/css/responsive.min.map') }}">
+    <link rel="stylesheet" href="{{ asset('front/css/responsive.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('front/css/variable.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/css/responsive.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/css/bootstrap/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/css/bootstrap/bootstrap-grid.css') }}"> --}}
     <title>Kailash Group Nepal</title>
     <style>
         .alert {
@@ -38,7 +46,12 @@
 <body>
     <header>
         <nav>
+            {{-- <!-- Breadcrumb Toggle latest added by roshan Button -->
+            <div class="breadcrumb-toggle" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </div> --}}
             <div class="navbar-wrapper">
+
                 <div class="logo">
                     <a href="/"><img src=" {{ asset('kailashgroupnepal_logo1.jpg') }}" alt = "kailash-group"></a>
                 </div>
@@ -242,6 +255,14 @@
                 }
             })
         });
+        // bread crumb toggle function by roshan
+        // When breadcrumb-toggle is clicked
+        // $('.breadcrumb-toggle').on('click', function() {
+        //     // Toggle the display of the .navbar-wrapper
+        //     $('.navbar-wrapper').slideToggle();
+        //     $('.navbar-wrapper').css('flex-direction', 'column');
+
+        // });
     </script>
     @livewireScripts
 </body>
