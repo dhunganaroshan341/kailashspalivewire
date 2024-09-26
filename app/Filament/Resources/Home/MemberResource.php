@@ -25,10 +25,21 @@ class MemberResource extends Resource
 
     public static function form(Form $form): Form
     {
+        // Get the maximum priority from the existing records
+        $maxPriority = TeamMember::max('priority');
+        $maxPriority++;
+
         return $form
             ->schema([
                 //
                 TextInput::make('name')->required(),
+                TextInput::make('priority')
+                    ->required()
+                    ->numeric()
+                    ->default($maxPriority + 1) // Set default to one more than the maximum priority
+                    ->label('Priority'),
+                // Add other fields here
+
                 FileUpload::make('image')->label('image')->image()->nullable()->disk('public')->directory('image'),
                 // Select::make('role')
                 //     ->label('Role')
