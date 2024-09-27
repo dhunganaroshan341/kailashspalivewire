@@ -50,7 +50,7 @@ class CommitmentResource extends Resource
             ])
             ->filters([
                 //
-            ])
+            ])->reorderable('id')
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])

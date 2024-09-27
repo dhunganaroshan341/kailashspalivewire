@@ -55,7 +55,7 @@ class HomeBrandResource extends Resource
             ])
             ->filters([
                 //
-            ])
+            ])->reorderable('id')
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])

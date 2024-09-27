@@ -45,16 +45,16 @@ class FooterSettingResource extends Resource
                 Forms\Components\TextInput::make('youtube')
                     ->label('YouTube Link'),
 
-                // Phone Numbers
                 Forms\Components\Repeater::make('phone_numbers')
                     ->label('Phone Numbers')
                     ->schema([
-                        Forms\Components\TextInput::make('number')
+                        Forms\Components\TextInput::make('number') // Changed to a unique key
                             ->label('Phone Number')
                             ->required(),
                     ])
-                    ->createItemButtonLabel('Add Phone Number')
-                    ->disableItemDeletion(), // Optional: disable item deletion
+                    ->minItems(1) // Optional: at least one phone number
+                    ->defaultItems(1) // Optional: Show one repeater field by default
+                , // Optional: Make the field span full width
 
                 // Email
                 Forms\Components\TextInput::make('email')
@@ -76,42 +76,55 @@ class FooterSettingResource extends Resource
 
                 Tables\Columns\TextColumn::make('description')
                     ->label('Footer Description')
-                    ->limit(50) // Limit to show only part of the description
+                    ->words(5)
                     ->sortable()
                     ->searchable(),
 
-                Tables\Columns\TextColumn::make('facebook')
-                    ->label('Facebook Link')
-                    ->sortable()
-                    ->searchable(),
+                // Tables\Columns\TextColumn::make('facebook')
+                //     ->label('Facebook Link')
+                //     ->sortable()
+                //     ->searchable(),
 
-                Tables\Columns\TextColumn::make('instagram')
-                    ->label('Instagram Link')
-                    ->sortable()
-                    ->searchable(),
+                // Tables\Columns\TextColumn::make('instagram')
+                //     ->label('Instagram Link')
+                //     ->sortable()
+                //     ->searchable(),
 
-                Tables\Columns\TextColumn::make('twitter')
-                    ->label('Twitter Link')
-                    ->sortable()
-                    ->searchable(),
+                // Tables\Columns\TextColumn::make('twitter')
+                //     ->label('Twitter Link')
+                //     ->sortable()
+                //     ->searchable(),
 
-                Tables\Columns\TextColumn::make('youtube')
-                    ->label('YouTube Link')
-                    ->sortable()
-                    ->searchable(),
+                // Tables\Columns\TextColumn::make('youtube')
+                //     ->label('YouTube Link')
+                //     ->sortable()
+                //     ->searchable(),
 
-                // Display Phone Numbers as a comma-separated list
-                Tables\Columns\TextColumn::make('phone_numbers')
-                    ->label('Phone Numbers')
-                    ->formatStateUsing(fn ($state) => implode(', ', array_column($state, 'number')))
-                    ->sortable()
-                    ->searchable(),
+                // Tables\Columns\TextColumn::make('phone_numbers')
+                //     ->label('Phone Numbers')
+                //     ->formatStateUsing(function ($state) {
+                //         dd($state); // This will help you see what's being passed
+
+                //         return is_array($state) ? implode(', ', $state) : '';
+                //     })
+                //     ->sortable()
+                //     ->searchable(),
+
+                // Tables\Columns\TextColumn::make('phone_numbers')
+                //     ->label('Phone Numbers')
+                //     ->formatStateUsing(function ($state) {
+                //         return is_array($state) ? implode(', ', array_column($state, 'number')) : '';
+                //     })
+                //     ->sortable()
+                //     ->searchable(),
 
                 Tables\Columns\TextColumn::make('email')
                     ->label('Email Address')
                     ->sortable()
                     ->searchable(),
+
             ])
+            // ->reorderable('priority') // Enable reordering based on priority
             ->filters([
                 // Add filters here if needed
             ])
@@ -120,7 +133,7 @@ class FooterSettingResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    // Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }

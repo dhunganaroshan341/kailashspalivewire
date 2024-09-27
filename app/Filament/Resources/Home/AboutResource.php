@@ -53,7 +53,7 @@ class AboutResource extends Resource
                 Tables\Columns\TextColumn::make('description')->limit(10),
                 ImageColumn::make('image')->disk('public'),
                 Tables\Columns\TextColumn::make('order'),
-            ])
+            ])->reorderable('id')
             ->filters([
                 //
             ])

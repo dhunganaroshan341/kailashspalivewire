@@ -67,13 +67,14 @@ class MemberResource extends Resource
         return $table
             ->columns([
                 //
-                TextColumn::make('name'),
-                TextColumn::make('role'),
-                ImageColumn::make('image'),
+                TextColumn::make('priority')->searchable()->sortable(),
+                TextColumn::make('name')->searchable()->sortable(),
+                TextColumn::make('role')->searchable()->sortable(),
+                ImageColumn::make('image')->searchable()->sortable(),
             ])
             ->filters([
                 //
-            ])
+            ])->reorderable('priority')
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])

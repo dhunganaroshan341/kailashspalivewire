@@ -72,7 +72,7 @@ class TestimonialSectionResource extends Resource
             ])
             ->filters([
                 // Add filters here if needed
-            ])
+            ])->reorderable('id')
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])

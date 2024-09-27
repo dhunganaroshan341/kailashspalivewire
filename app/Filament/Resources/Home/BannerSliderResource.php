@@ -47,7 +47,7 @@ class BannerSliderResource extends Resource
                 Tables\Columns\TextColumn::make('description')->limit(50),
                 ImageColumn::make('image')->disk('public'),
 
-            ])
+            ])->reorderable('id')
             ->filters([
                 //
             ])

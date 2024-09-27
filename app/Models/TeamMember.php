@@ -22,6 +22,7 @@ class TeamMember extends Model
         'twitter',
         'instagram',
         'linkedin',
+        'priority',
     ];
 
     public function socialMedia()
