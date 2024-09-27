@@ -44,11 +44,11 @@ class ContactResource extends Resource
                 TextColumn::make('email')->sortable()->searchable(),
                 TextColumn::make('phone')->sortable()->searchable(),
                 TextColumn::make('address')->sortable()->searchable(),
-                TextColumn::make('contacts')
-                    ->label('Contacts')
-                    ->formatStateUsing(fn ($state) => json_encode($state)) // Displaying contacts as JSON
-                    ->sortable()
-                    ->searchable(),
+                // TextColumn::make('contacts')
+                //     ->label('Contacts')
+                //     ->formatStateUsing(fn ($state) => json_encode($state)) // Displaying contacts as JSON
+                //     ->sortable()
+                //     ->searchable(),
                 ImageColumn::make('image_path')->sortable()->searchable()->label('Image'),
             ])
             ->filters([

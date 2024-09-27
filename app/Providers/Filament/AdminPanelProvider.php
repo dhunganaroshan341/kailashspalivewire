@@ -11,7 +11,7 @@ use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
 use Filament\Widgets;
-use Firefly\FilamentBlog\Blog;
+// use Firefly\FilamentBlog\Blog;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -33,7 +33,7 @@ class AdminPanelProvider extends PanelProvider
             ->plugins([FilamentScaffoldPlugin::make(),
                 ActivitylogPlugin::make(),
                 FilamentUmamiPlugin::make(),
-                Blog::make(),
+                // Blog::make(),
             ])->sidebarCollapsibleOnDesktop()
             ->collapsedSidebarWidth('9rem')
             ->default()
